@@ -49,7 +49,7 @@ with st.container():
         st.subheader("For decryption, select the encrypted image and press decrypt")
 
 with st.container():
-    st.write("---")
+    st.write("---")  
     st.header("What are your thoughts about this tool?")
     contact_form="""
     <form action="https://formsubmit.co/umerfarooq230@email.com" method="POST">
