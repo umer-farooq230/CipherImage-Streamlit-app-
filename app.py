@@ -17,7 +17,7 @@ def local_css(filename):
     with open(filename) as f:
         st.markdown(f"<style>{f.read()}<style>",unsafe_allow_html=True)
     
-local_css("C:\\Users\\precision\\Desktop\\streamlit\\style.css")
+local_css("style.css")
 # Display Lottie animation
 with st.container():
     l_column, r_column = st.columns(2)
@@ -39,13 +39,13 @@ with st.container():
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.image("C:\\Users\\precision\\Desktop\\file1.png", caption=" ", use_column_width=True)
+        st.image("file1.png", caption=" ", use_column_width=True)
         st.subheader("Enter the password you want to save")
     with col2:
-        st.image("C:\\Users\\precision\\Desktop\\file2.png", caption=" ", use_column_width=True)
+        st.image("file2.png", caption=" ", use_column_width=True)
         st.subheader("Select the image you want to encrypt into and press encrypt")
     with col3:
-        st.image("C:\\Users\\precision\\Desktop\\file3.png", caption=" ",  use_column_width=True)
+        st.image("file3.png", caption=" ",  use_column_width=True)
         st.subheader("For decryption, select the encrypted image and press decrypt")
 
 with st.container():
