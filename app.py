@@ -52,7 +52,7 @@ with st.container():
     st.write("---")  
     st.header("What are your thoughts about this tool?")
     contact_form="""
-    <form action="https://formsubmit.co/umerfarooq230@email.com" method="POST">
+    <form action="https://formsubmit.co/umerfarooq230@gmail.com" method="POST">
      <input type="text" name="name" placeholder="Your name" required>
      <input type="email" name="email" placeholder="Your Email" required>
      <textarea name="message" placeholder="Your message" required></textarea>
