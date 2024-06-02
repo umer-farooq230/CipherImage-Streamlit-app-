@@ -26,7 +26,8 @@ with st.container():
         st.subheader("This tool allows you to hide your password in any image ")
         #st.write("")
         st.write("\n\n")
-        st.write(f"This tool is still in progress and will launch very soon. Help us shape this product at the end of this page {emoji.emojize(":smile:")}{emoji.emojize(":down_arrow:")}")
+        st.write(f"This tool is still in progress and will launch very soon. Help us shape this product at the end of this page {emoji.emojize(':smile:')} {emoji.emojize(':down_arrow:')}")
+
 
     with r_column:
         st_lottie(lottie_coding, height=280, key="coding")
