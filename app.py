@@ -3,11 +3,12 @@ from streamlit_lottie import st_lottie
 import requests
 import subprocess
 import os
+import stat
 
 st.set_page_config(page_title="ImagePass", layout="wide")
 
 # Lottie animation URL
-lottie_coding ="https://lottie.host/1853f5b4-4998-4cea-b64d-7d9e6a0351b6/Fb1o8zjsu5.json"
+lottie_coding = "https://lottie.host/1853f5b4-4998-4cea-b64d-7d9e6a0351b6/Fb1o8zjsu5.json"
 
 # Load Lottie animation
 def load_lottie(url):
@@ -16,12 +17,11 @@ def load_lottie(url):
         return None
     return r.json()
 
-
 def local_css(filename):
-    with open (filename) as f:
-        st.markdown(f"<style>{f.read()}<style>",unsafe_allow_html=True)
-local_css("style.css")
+    with open(filename) as f:
+        st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html=True)
 
+local_css("style.css")
 
 # Display Lottie animation
 with st.container():
@@ -54,13 +54,19 @@ with st.container():
     st.write("---")
     st.header("Hit the button to run the app")
 
-    # Specify the EXE file path
+    # Specify the relative EXE file path
     exe_file_path = os.path.join(os.getcwd(), "main.exe")
 
-    
-    if st.button("Lets Hide passwords",key="hide_button",):
+    # Debugging statements to verify the path and contents
+    st.write(f"Current working directory: {os.getcwd()}")
+    st.write(f"Files in the current directory: {os.listdir(os.getcwd())}")
+
+    if st.button("Lets Hide passwords", key="hide_button"):
         if os.path.exists(exe_file_path):
             try:
+                # Change the file permissions to make it executable
+                os.chmod(exe_file_path, os.stat(exe_file_path).st_mode | stat.S_IEXEC)
+
                 # Use subprocess to run the EXE file
                 result = subprocess.run([exe_file_path], capture_output=True, text=True)
                 st.write("Execution errors:")
@@ -89,4 +95,3 @@ with st.container():
     left_column, right_column = st.columns(2)
     with left_column:
         st.markdown(contact_form, unsafe_allow_html=True)
-    
