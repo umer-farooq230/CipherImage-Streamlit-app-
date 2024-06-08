@@ -1,16 +1,12 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
-import subprocess
 import os
-import stat
 
 st.set_page_config(page_title="ImagePass", layout="wide")
 
-# Lottie animation URL
 lottie_coding = "https://lottie.host/1853f5b4-4998-4cea-b64d-7d9e6a0351b6/Fb1o8zjsu5.json"
 
-# Load Lottie animation
 def load_lottie(url):
     r = requests.get(url)
     if r.status_code != 200:
@@ -19,11 +15,14 @@ def load_lottie(url):
 
 def local_css(filename):
     with open(filename) as f:
-        st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html=True)
-
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 local_css("style.css")
 
-# Display Lottie animation
+def main_logic():
+    # Placeholder for the logic inside main.exe
+    # Implement your logic here
+    return "Logic executed successfully."
+
 with st.container():
     l_column, r_column = st.columns(2)
     with l_column:
@@ -33,11 +32,9 @@ with st.container():
     with r_column:
         st_lottie(load_lottie(lottie_coding), height=300, key="coding")
 
-# Instructions and images
 with st.container():
     st.write("---")
     st.header("How does it work?")
-
     col1, col2, col3 = st.columns(3)
     with col1:
         st.image("file1.png", caption=" ", use_column_width=True)
@@ -49,38 +46,18 @@ with st.container():
         st.image("file3.png", caption=" ", use_column_width=True)
         st.subheader("For decryption, select the encrypted image and press decrypt")
 
-# EXE file execution
 with st.container():
     st.write("---")
     st.header("Hit the button to run the app")
 
-    # Specify the relative EXE file path
-    exe_file_path = os.path.join(os.getcwd(), "main.exe")
+    if st.button("Let's Hide passwords", key="hide_button"):
+        try:
+            result = main_logic()
+            st.write("Execution output:")
+            st.write(result)
+        except Exception as e:
+            st.write(f"An unexpected error occurred: {e}")
 
-    # Debugging statements to verify the path and contents
-    st.write(f"Current working directory: {os.getcwd()}")
-    st.write(f"Files in the current directory: {os.listdir(os.getcwd())}")
-
-    if st.button("Lets Hide passwords", key="hide_button"):
-        if os.path.exists(exe_file_path):
-            try:
-                # Change the file permissions to make it executable
-                os.chmod(exe_file_path, os.stat(exe_file_path).st_mode | stat.S_IEXEC)
-
-                # Use subprocess to run the EXE file
-                result = subprocess.run([exe_file_path], capture_output=True, text=True)
-                st.write("Execution errors:")
-                st.write(result.stderr)
-            except subprocess.CalledProcessError as e:
-                st.write(f"An error occurred while running the file: {e}")
-            except RuntimeError as e:
-                st.write(f"Runtime error: {e}")
-            except Exception as e:
-                st.write(f"An unexpected error occurred: {e}")
-        else:
-            st.write(f"EXE file not found at {exe_file_path}")
-
-# Contact form
 with st.container():
     st.write("---")
     st.header("What are your thoughts about this tool?")
