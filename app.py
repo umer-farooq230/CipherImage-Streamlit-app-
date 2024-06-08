@@ -55,7 +55,7 @@ with st.container():
     st.header("Hit the button to run the app")
 
     # Specify the EXE file path
-    exe_file_path = "main.exe"
+    exe_file_path = "C:\\Users\\precision\\Desktop\\streamlit\\dist\\main.exe"
 
     if st.button("Lets Hide passwords",key="hide_button",):
         if os.path.exists(exe_file_path):
