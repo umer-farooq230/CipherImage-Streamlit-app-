@@ -4,7 +4,7 @@ import requests
 import subprocess
 import os
 
-st.set_page_config(page_title="Image Pass", layout="wide")
+st.set_page_config(page_title="ImagePass", layout="wide")
 
 # Lottie animation URL
 lottie_coding ="https://lottie.host/1853f5b4-4998-4cea-b64d-7d9e6a0351b6/Fb1o8zjsu5.json"
@@ -55,8 +55,9 @@ with st.container():
     st.header("Hit the button to run the app")
 
     # Specify the EXE file path
-    exe_file_path = "C:\\Users\\precision\\Desktop\\streamlit\\dist\\main.exe"
+    exe_file_path = os.path.join(os.getcwd(), "main.exe")
 
+    
     if st.button("Lets Hide passwords",key="hide_button",):
         if os.path.exists(exe_file_path):
             try:
@@ -88,3 +89,4 @@ with st.container():
     left_column, right_column = st.columns(2)
     with left_column:
         st.markdown(contact_form, unsafe_allow_html=True)
+    
