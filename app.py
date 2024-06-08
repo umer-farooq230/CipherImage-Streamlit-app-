@@ -20,7 +20,7 @@ def load_lottie(url):
 def local_css(filename):
     with open (filename) as f:
         st.markdown(f"<style>{f.read()}<style>",unsafe_allow_html=True)
-local_css("C:\\Users\\precision\\Desktop\\streamlit\\style.css")
+local_css("style.css")
 
 
 # Display Lottie animation
