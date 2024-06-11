@@ -4,6 +4,7 @@ import requests
 from PIL import Image
 import numpy as np
 import io
+import os
 
 st.set_page_config(page_title="ImagePass", layout="wide", page_icon="🔒")
 
