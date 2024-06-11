@@ -153,7 +153,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add Google Analytics
-"""
+st.markdown("""
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0J3BNNZL"></script>
 <script>
@@ -163,4 +163,4 @@ st.markdown("""
 
   gtag('config', 'G-1X0J3BNNZL');
 </script>
-"""
+""", unsafe_allow_html=True)
