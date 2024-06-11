@@ -6,16 +6,32 @@ import numpy as np
 import io
 import streamlit.components.v1 as components
 
+# Set page config
 st.set_page_config(page_title="ImagePass", layout="wide", page_icon="🔒")
 
-lottie_coding = "https://lottie.host/1853f5b4-4998-4cea-b64d-7d9e6a0351b6/Fb1o8zjsu5.json"
+# Google Analytics script
+GA_SCRIPT = """
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0J3BNNZL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1X0J3BNNZL');
+</script>
+"""
 
+# Inject the Google Analytics script into the Streamlit app
+components.html(GA_SCRIPT, height=0, width=0)
+
+# Function to load Lottie animations
 def load_lottie(url):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
 
+# Function to load local CSS
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -24,6 +40,7 @@ def local_css(file_name):
 css_path = "style.css"
 local_css(css_path)
 
+# Encoding and decoding functions
 def encode_text(text, encoding='utf-8', errors='replace'):
     bits = bin(int.from_bytes(text.encode(encoding, errors), 'big'))[2:]
     return bits.zfill(8 * ((len(bits) + 7) // 8))
@@ -150,17 +167,4 @@ st.markdown(footer, unsafe_allow_html=True)
 # Load Font Awesome
 st.markdown("""
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-""", unsafe_allow_html=True)
-
-# Add Google Analytics
-st.markdown("""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0J3BNNZL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1X0J3BNNZL');
-</script>
 """, unsafe_allow_html=True)
