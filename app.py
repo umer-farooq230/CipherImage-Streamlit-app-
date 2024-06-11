@@ -4,7 +4,7 @@ import requests
 from PIL import Image
 import numpy as np
 import io
-import os
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="ImagePass", layout="wide", page_icon="🔒")
 
@@ -21,7 +21,7 @@ def local_css(file_name):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Ensure the correct path to style.css
-css_path = os.path.join(os.path.dirname(__file__), "style.css")
+css_path = "style.css"
 local_css(css_path)
 
 def encode_text(text, encoding='utf-8', errors='replace'):
@@ -76,7 +76,6 @@ def extract_from_image(image):
         return decoded_message
     except Exception as e:
         raise ValueError(f"Error extracting message from image: {str(e)}")
-
 
 def display_image_encryption():
     st.header(" Image Pass🔒")
@@ -154,7 +153,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add Google Analytics
-st.markdown("""
+components.html("""
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0J3BNNZL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -163,4 +163,4 @@ st.markdown("""
 
   gtag('config', 'G-1X0J3BNNZL');
 </script>
-""", unsafe_allow_html=True)
+""", height=0)
