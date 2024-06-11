@@ -4,25 +4,10 @@ import requests
 from PIL import Image
 import numpy as np
 import io
-import streamlit.components.v1 as components
+from streamlit_analytics import track
 
 # Set page config
 st.set_page_config(page_title="ImagePass", layout="wide", page_icon="🔒")
-
-# Google Analytics script
-GA_SCRIPT = """
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0J3BNNZL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1X0J3BNNZL');
-</script>
-"""
-
-# Inject the Google Analytics script into the Streamlit app
-components.html(GA_SCRIPT, height=0, width=0)
 
 # Function to load Lottie animations
 def load_lottie(url):
@@ -141,30 +126,31 @@ def display_image_encryption():
                     st.error(f"Error during decryption: {str(e)}")
 
 # Display the main page (Image Encryption)
-display_image_encryption()
+with track():
+    display_image_encryption()
 
-# Display the form
-st.write("---")
-st.header("💬 What are your thoughts about this tool?")
-contact_form = """
-<form action="https://formsubmit.co/umerfarooq230@email.com" method="POST">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your message" required></textarea>
-    <button type="submit">Send</button>
-</form>
-"""
-st.markdown(contact_form, unsafe_allow_html=True)
+    # Display the form
+    st.write("---")
+    st.header("💬 What are your thoughts about this tool?")
+    contact_form = """
+    <form action="https://formsubmit.co/umerfarooq230@email.com" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    """
+    st.markdown(contact_form, unsafe_allow_html=True)
 
-# Add footer
-footer = """
-<div class="footer">
-    <p>&copy; 2024 <i class="fas fa-lock"></i> All rights reserved.</p>
-</div>
-"""
-st.markdown(footer, unsafe_allow_html=True)
+    # Add footer
+    footer = """
+    <div class="footer">
+        <p>&copy; 2024 <i class="fas fa-lock"></i> All rights reserved.</p>
+    </div>
+    """
+    st.markdown(footer, unsafe_allow_html=True)
 
-# Load Font Awesome
-st.markdown("""
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-""", unsafe_allow_html=True)
+    # Load Font Awesome
+    st.markdown("""
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    """, unsafe_allow_html=True)
