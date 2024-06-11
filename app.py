@@ -18,7 +18,8 @@ def load_lottie(url):
 def local_css(filename):
     with open(filename) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-local_css("style.css")
+css_path = os.path.join(os.path.dirname(__file__), "style.css")
+local_css(css_path)
 
 def encode_text(text, encoding='utf-8', errors='replace'):
     bits = bin(int.from_bytes(text.encode(encoding, errors), 'big'))[2:]
