@@ -4,6 +4,7 @@ import requests
 from PIL import Image
 import numpy as np
 import io
+import os
 
 st.set_page_config(page_title="ImagePass", layout="wide", page_icon="🔒")
 
@@ -74,8 +75,6 @@ def extract_from_image(image):
     except Exception as e:
         raise ValueError(f"Error extracting message from image: {str(e)}")
 
-def main_logic():
-    return "Logic executed successfully."
 
 def display_image_encryption():
     st.header(" Image Pass🔒")
