@@ -4,7 +4,6 @@ import requests
 from PIL import Image
 import numpy as np
 import io
-import os
 
 st.set_page_config(page_title="ImagePass", layout="wide", page_icon="🔒")
 
@@ -16,9 +15,11 @@ def load_lottie(url):
         return None
     return r.json()
 
-def local_css(filename):
-    with open(filename) as f:
+def local_css(file_name):
+    with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# Ensure the correct path to style.css
 css_path = os.path.join(os.path.dirname(__file__), "style.css")
 local_css(css_path)
 
@@ -149,4 +150,16 @@ st.markdown(footer, unsafe_allow_html=True)
 # Load Font Awesome
 st.markdown("""
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+""", unsafe_allow_html=True)
+
+# Add Google Analytics
+st.markdown("""
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0J3BNNZL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1X0J3BNNZL');
+</script>
 """, unsafe_allow_html=True)
